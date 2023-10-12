@@ -1,4 +1,4 @@
-package com.AlexanderHasslundShop.demo.interfac;
+/*package com.AlexanderHasslundShop.demo.interfac;
 
 public interface Produts {
 
@@ -10,3 +10,4 @@ public interface Produts {
 
 public class IProducts {
 }
+*/

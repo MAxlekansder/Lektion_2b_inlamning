@@ -8,7 +8,7 @@ import java.util.List;
 public class Products {
 
     List<Products> productsList = new ArrayList<>();
-    private String productName;
+    private String productName = "";
     private int productCount;
 
 
@@ -34,14 +34,14 @@ public class Products {
     }
 
 
-    public void addProducts(String productName, int productCount) {
+    public void addProducts() {
 
         System.out.print("Vad för produkt vill du lägga till?: ");
         setProductName(Input.stringInput());
         System.out.println("Hur många?: ");
         setProductCount(Input.intInput());
-        
-        productsList.add()
+
+        productsList.add( new Products(getProductName(), getProductCount()));
     }
 
     public void removeProducts(String productName, int productCount) {
