@@ -38,17 +38,41 @@ public class Products {
 
         System.out.print("Vad för produkt vill du lägga till?: ");
         setProductName(Input.stringInput());
-        System.out.println("Hur många?: ");
+        System.out.print("Hur många?: ");
         setProductCount(Input.intInput());
 
         productsList.add( new Products(getProductName(), getProductCount()));
     }
 
     public void removeProducts(String productName, int productCount) {
+        System.out.println("Vill du ta bort något?: J/N");
+        String deleteProduct = Input.stringInput();
+
+        if (deleteProduct.toLowerCase() == "j" && !productsList.isEmpty()) {
+            System.out.println("Vad skulle du vilja ta bort? ");
+
+
+            for (int i = 0; i < productsList.size(); i++) {
+                int deletedRow = (i+1);
+                System.out.println(productsList.get(i) +" VÄLJ NUMMER FÖR ATT RADERA: " + deletedRow);
+            }
+        }
 
     }
 
     public void displayProducts() {
 
+
+        System.out.println("--INKÖPSLISTA--");
+        for (int i = 0; i < productsList.size(); i++) {
+            System.out.println(productsList.get(i));
+        }
+    }
+
+    @Override
+    public String toString() {
+        return
+                "Produkt: " + productName + " -  " +
+                " Antal: "  + productCount + " ||";
     }
 }
