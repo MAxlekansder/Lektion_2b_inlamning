@@ -10,6 +10,7 @@ public class Products {
     List<Products> productsList = new ArrayList<>();
     private String productName = "";
     private int productCount;
+    boolean prodListTrue = false;
 
 
     public int getProductCount() {
@@ -35,34 +36,54 @@ public class Products {
 
 
     public void addProducts() {
+        boolean isDone = true;
+        do {
 
-        System.out.print("Vad för produkt vill du lägga till?: ");
-        setProductName(Input.stringInput());
-        System.out.print("Hur många?: ");
-        setProductCount(Input.intInput());
+            System.out.print("Vad för produkt vill du lägga till?: Annars skriv 'Klar' ");
+            setProductName(Input.stringInput());
+            if (!(getProductName().toLowerCase().equals("klar") && !getProductName().isEmpty())) {
 
-        productsList.add( new Products(getProductName(), getProductCount()));
+                //setProductName(getProductName());
+                System.out.print("Hur många?: ");
+                setProductCount(Input.intInput());
+                productsList.add(new Products(getProductName(), getProductCount()));
+                prodListTrue = true;
+            } else {
+                isDone = false;
+                break;
+
+            }
+        } while (isDone);
     }
 
-    public void removeProducts(String productName, int productCount) {
-        System.out.println("Vill du ta bort något?: J/N");
-        String deleteProduct = Input.stringInput();
+    public void removeProducts() {
+        if (prodListTrue) {
+            System.out.println("Vill du ta bort något?: J/N");
+            String checkDelete = Input.stringInput();
 
-        if (deleteProduct.toLowerCase() == "j" && !productsList.isEmpty()) {
-            System.out.println("Vad skulle du vilja ta bort? ");
+            if (checkDelete.toLowerCase().equals("j")) {
+                System.out.println("Vad skulle du vilja ta bort? ");
 
 
-            for (int i = 0; i < productsList.size(); i++) {
-                int deletedRow = (i+1);
-                System.out.println(productsList.get(i) +" VÄLJ NUMMER FÖR ATT RADERA: " + deletedRow);
+                for (int i = 0; i < productsList.size(); i++) {
+                    int deletedRow = (i + 1);
+                    System.out.println(productsList.get(i) + " VÄLJ NUMMER FÖR ATT RADERA: " + deletedRow);
+                }
+                int deleteProduct = Input.intInput();
+                System.out.println("Du valde att ta bort: " + productsList.get(deleteProduct -1 ).getProductName());
+                productsList.remove(deleteProduct - 1);
+
+
+                System.out.println("\nnu finns endast detta kvar på listan:");
+                displayProducts();
             }
+        } else {
+            System.out.println("Lägg till något först!");
         }
 
     }
 
     public void displayProducts() {
-
-
         System.out.println("--INKÖPSLISTA--");
         for (int i = 0; i < productsList.size(); i++) {
             System.out.println(productsList.get(i));
@@ -72,7 +93,6 @@ public class Products {
     @Override
     public String toString() {
         return
-                "Produkt: " + productName + " -  " +
-                " Antal: "  + productCount + " ||";
+                "Produkt: " + productName + " -  " + "Antal: " + productCount + " ||";
     }
 }

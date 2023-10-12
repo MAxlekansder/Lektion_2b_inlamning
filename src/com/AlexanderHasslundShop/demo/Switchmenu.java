@@ -10,18 +10,28 @@ public class Switchmenu {
 
     public void switchMenu() {
         Products products = new Products("", 0);
+
+        System.out.println("\nCase 1: lägg till inköpslista");
+        System.out.println("Case 2: ta bort från inklista");
+        System.out.println("Case 3: visa produkter i inklis");
+        System.out.println("case 4: visa priser för produkt");
+        System.out.println("case 5: stäng av programmet\n");
+
         Input input = new Input();
         boolean isStillShopping = true;
 
+
         do {
+            try {
             System.out.println("switch");
             int inputChoice = input.intInput();
-            try {
+
                 switch (inputChoice) {
                     case 1:
                         products.addProducts();
                         break;
                     case 2:
+                        products.removeProducts();
                         // remove item
                         break;
                     case 3:
