@@ -1,6 +1,7 @@
 package com.AlexanderHasslundShop.demo;
 
 import com.AlexanderHasslund.demo.Input;
+import com.AlexanderHasslundShop.demo.interfac.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class Products {
 
     List<Products> productsList = new ArrayList<>();
-    private String productName = "";
+    private String productName;
     private int productCount;
     boolean prodListTrue = false;
 
@@ -37,13 +38,12 @@ public class Products {
 
     public void addProducts() {
         boolean isDone = true;
-        do {
 
-            System.out.print("Vad för produkt vill du lägga till?: Annars skriv 'Klar' ");
+        do {
+            System.out.print("Vad för produkt vill du lägga till?: Annars skriver du 'Klar' ");
             setProductName(Input.stringInput());
             if (!(getProductName().toLowerCase().equals("klar") && !getProductName().isEmpty())) {
 
-                //setProductName(getProductName());
                 System.out.print("Hur många?: ");
                 setProductCount(Input.intInput());
                 productsList.add(new Products(getProductName(), getProductCount()));
@@ -51,10 +51,10 @@ public class Products {
             } else {
                 isDone = false;
                 break;
-
             }
         } while (isDone);
     }
+
 
     public void removeProducts() {
         if (prodListTrue) {
@@ -80,8 +80,8 @@ public class Products {
         } else {
             System.out.println("Lägg till något först!");
         }
-
     }
+
 
     public void displayProducts() {
         System.out.println("--INKÖPSLISTA--");
